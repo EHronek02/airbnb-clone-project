@@ -48,20 +48,6 @@ The **AirBnB Clone Backend** is a robust, scalable, and fully functional API Ser
 - **Indexing:** Improved speed for common queries.
 - **Caching (Redis):** Reduced load and improved response time.
 
----
-
-## ⚙️ Technology Stack
-
-| Component            | Technology            |
-|---------------------|------------------------|
-| Backend Framework   | Django                 |
-| API Layer           | Django REST Framework  |
-| Database            | PostgreSQL             |
-| Query Language      | GraphQL                |
-| Async Tasks         | Celery                 |
-| Caching             | Redis                  |
-| Containerization    | Docker                 |
-| CI/CD Pipelines     | GitHub Actions / CI/CD |
 
 ---
 
@@ -122,6 +108,23 @@ The **AirBnB Clone Backend** is a robust, scalable, and fully functional API Ser
 | UI/UX designer      | Transforms a product vision into user-friendly designs |
 | Software architect  | Designs a high-level software architecture by selecting appropriate tools and platforms to implement the product vision |
 | Test automation engineer | Designs a test automation ecosystem. Write and maintains test scripts for automated testing |
+
+---
+
+---
+
+## ⚙️ Technology Stack
+
+| Component            | Technology            | Purpose in project |
+|---------------------|------------------------|---------------------
+| Backend Framework   | Django                 | A high level python web framework used for building secure, scalable web APIs. |
+| API Layer           | Django REST Framework  | An extension of Django that simplifies the creation of RESTful APIs. |
+| Database            | PostgreSQL             | A powerful, open-source relational database used to store and manage all data. |
+| Query Language      | GraphQL                | A flexible query language that allows clients to request exactly the data they need. |
+| Async Tasks         | Celery                 | A task queue used to handle asynchronous background tasks (e.g., sending emails). |
+| Caching             | Redis                  | An in-memory data store used for caching, speeding up API responses and task queues. |
+| Containerization    | Docker                 | Ensures consistency across development and production by containerizing the app. |
+| CI/CD Pipelines     | GitHub Actions / CI/CD | Automates testing and deployment processes to ensure faster and more reliable delivery. |
 
 ---
 
