@@ -68,35 +68,35 @@ The **AirBnB Clone Backend** is a robust, scalable, and fully functional API Ser
 ## 📌 API Endpoints Overview
 
 ### 🧑 Users
-GET /users/ - List all users
-POST /users/ - Create a new user
-GET /users/{user_id}/ - Retrieve user
-PUT /users/{user_id}/ - Update user
-DELETE /users/{user_id}/ - Delete user
+- GET /users/ - List all users
+- POST /users/ - Create a new user
+- GET /users/{user_id}/ - Retrieve user
+- PUT /users/{user_id}/ - Update user
+- DELETE /users/{user_id}/ - Delete user
 
 ### 🏠 Properties
-GET /properties/ - List all properties
-POST /properties/ - Create property
-GET /properties/{id}/ - Retrieve property
-PUT /properties/{id}/ - Update property
-DELETE /properties/{id}/ - Delete property
+- GET /properties/ - List all properties
+- POST /properties/ - Create property
+- GET /properties/{id}/ - Retrieve property
+- PUT /properties/{id}/ - Update property
+- DELETE /properties/{id}/ - Delete property
 
 ### 📅 Bookings
-GET /bookings/ - List all bookings
-POST /bookings/ - Create booking
-GET /bookings/{id}/ - Retrieve booking
-PUT /bookings/{id}/ - Update booking
-DELETE /bookings/{id}/ - Delete booking
+- GET /bookings/ - List all bookings
+- POST /bookings/ - Create booking
+- GET /bookings/{id}/ - Retrieve booking
+- PUT /bookings/{id}/ - Update booking
+- DELETE /bookings/{id}/ - Delete booking
 
 ### 💳 Payments
-POST /payments/ - Process a payment
+- POST /payments/ - Process a payment
 
 ### 📝 Reviews
-GET /reviews/ - List all reviews
-POST /reviews/ - Create review
-GET /reviews/{id}/ - Retrieve review
-PUT /reviews/{id}/ - Update review
-DELETE /reviews/{id}/ - Delete review
+- GET /reviews/ - List all reviews
+- POST /reviews/ - Create review
+- GET /reviews/{id}/ - Retrieve review
+- PUT /reviews/{id}/ - Update review
+- DELETE /reviews/{id}/ - Delete review
 
 
 ---
