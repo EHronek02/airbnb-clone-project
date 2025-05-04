@@ -116,6 +116,12 @@ The **AirBnB Clone Backend** is a robust, scalable, and fully functional API Ser
 | Database Admin      | Schema design, performance tuning, indexing   |
 | DevOps Engineer     | Docker setup, CI/CD, monitoring               |
 | QA Engineer         | Writing test cases and validating endpoints   |
+| Business Analyst    | Translates customers business needs into requrirements |
+| Product Owner       | Makes sure the final product meets customer requirements |
+| Project Manager     | Makes sure a product or its part is delivered on time and within budget |
+| UI/UX designer      | Transforms a product vision into user-friendly designs |
+| Software architect  | Designs a high-level software architecture by selecting appropriate tools and platforms to implement the product vision |
+| Test automation engineer | Designs a test automation ecosystem. Write and maintains test scripts for automated testing |
 
 ---
 
