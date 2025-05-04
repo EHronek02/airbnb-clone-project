@@ -310,6 +310,31 @@ Securing the backend APIs is critical to protect sensitive user data, ensure tru
 
 ---
 
+## CI/CD Pipeline
+
+### What is CI/CD?
+**Continuous Integration (CI)** and **Continuous Deployment (CD)** automate testing, building, and deploying code changes. CI ensures every code commit is tested for errors, while CD automates deploying validated code to production.
+
+### Why CI/CD Matters for This Project
+- **Faster Releases**: Automate testing and deployment, reducing manual errors and speeding up feature delivery.  
+- **Early Bug Detection**: Run automated tests (unit, integration) on every pull request to catch issues early.  
+- **Consistent Deployments**: Ensure code works identically in development, staging, and production environments.  
+
+### Tools & Workflow
+- **GitHub Actions**: Configure workflows to run tests on every `git push` or pull request.  
+- **Docker**: Containerize the app for consistent environments across stages.  
+- **AWS/Heroku**: Auto-deploy to cloud platforms after tests pass.  
+- **SonarCloud**: Monitor code quality and security vulnerabilities.  
+
+### Example Workflow
+1. **Code Commit** → Triggers GitHub Actions.  
+2. **Run Tests** → Unit tests, security scans, and schema validations.  
+3. **Build Docker Image** → On success, create a production-ready image.  
+4. **Deploy to Staging** → Test in a near-production environment.  
+5. **Manual Approval** → Confirm deployment to production.  
+
+---
+
 ## 📚 Additional Resources
 
 - 📘 [System design architecture for hotel booking apps](https://medium.com/nerd-for-tech/system-design-architecture-for-hotel-booking-apps-like-airbnb-oyo-6efb4f4dddd7)
