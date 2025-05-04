@@ -275,6 +275,41 @@ Comprehensive REST and GraphQL APIs documented via OpenAPI/Swagger. Supports CRU
 
 ---
 
+## API Security
+
+Securing the backend APIs is critical to protect sensitive user data, ensure trust in transactions, and prevent abuse. Below are the key security measures implemented in this project:
+
+### 🔐 Authentication & Authorization
+- **JWT (JSON Web Tokens)**: Stateless authentication using signed tokens to verify user identity. Tokens expire periodically to reduce misuse risk.
+- **Role-Based Access Control (RBAC)**: Users (guests, hosts, admins) can only access endpoints relevant to their role (e.g., only hosts can create properties).
+- **OAuth 2.0**: Optional integration with Google/Facebook for secure third-party logins.  
+**Why it matters**: Prevents unauthorized access to user accounts and sensitive actions like deleting properties or accessing payment data.
+
+### 🛡️ Rate Limiting & Throttling
+- **Request Limits**: REST APIs enforce rate limits (e.g., 100 requests/minute per IP) to prevent DDoS attacks and brute-force login attempts.  
+**Why it matters**: Protects the system from being overwhelmed by malicious traffic or credential-stuffing attacks.
+
+### 🔒 Input Validation & Sanitization
+- **Schema Validation**: All API requests are validated against strict schemas (e.g., date formats, price ranges).  
+- **SQL/NoSQL Injection Protection**: ORM (Django) and parameterized queries prevent injection attacks.  
+**Why it matters**: Blocks malicious payloads that could corrupt data or expose vulnerabilities.
+
+### 🔑 Payment Security
+- **PCI-Compliant Gateways**: Stripe/PayPal handle card data directly, avoiding storage of sensitive payment details.  
+- **Idempotent Requests**: Payment endpoints use unique `idempotency keys` to prevent duplicate charges.  
+**Why it matters**: Ensures financial transactions are secure and compliant with industry standards.
+
+### 📜 HTTPS & CORS
+- **HTTPS**: All API communication is encrypted in transit using TLS/SSL.  
+- **CORS Policies**: Strict cross-origin resource sharing rules limit API access to trusted domains.  
+**Why it matters**: Protects data from interception and restricts unauthorized frontend clients.
+
+### 🔍 Audit Logging
+- **Request Logging**: All API requests are logged (with sensitive fields redacted) for monitoring and debugging.  
+**Why it matters**: Enables detection of suspicious activity and compliance with data protection regulations.
+
+---
+
 ## 📚 Additional Resources
 
 - 📘 [System design architecture for hotel booking apps](https://medium.com/nerd-for-tech/system-design-architecture-for-hotel-booking-apps-like-airbnb-oyo-6efb4f4dddd7)
