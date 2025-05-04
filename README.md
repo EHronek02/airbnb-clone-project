@@ -134,12 +134,15 @@ The database is designed to capture all core entities and relationships needed t
 Represents all users on the platform (both guests and hosts).
 
 **Key Fields:**
-- `id` - Unique identifier for a user object
+- `id` - Unique identifier for a user object (UUID)
 - `first_name` - First name of the user
 - `Last_name` - Last name of the user
 - `email` - email address (used for login)
 - `password` - hashed password for authentication
 - `is_host` - Boolean indicating if the user can list properties
+- `role` - Enum : Guest, host, admin
+- `created_at` - date user was created
+- `update_at` - last time user was updated
 
 **Relationships:**
 - a user can list multiple
@@ -155,8 +158,13 @@ Represents a property that can be booked by users.
 - `id` - unique identifier for property objects
 - `host_id` - references the user who owns the property
 - `title` - Title of the listing
+- `description` - description of the property
 - `location` - address/ general location of the property
 - `price_per_night` - cost per night
+- `max_guests` - maximum guest accomodate
+- `is_available` - status of the property if is available or not
+- `created_at` - date object was created
+- `updated_at` - date object was updated
 
 **Relationships:**
 - Each property belongs to one host (user)
@@ -174,10 +182,13 @@ Represents a reservation made by a user for a property.
 - `property_id` - references the booked property
 - `check_in` - start date of the booking
 - `check_out` - End date of the booking
+- `status` - Pending, confirmed, cancelled
+- `created_at` - date object was created
+- `updated_at` - date object was updated
 
 **Relationships:**
 - Each booking belongs to one user
-- Each booking is associated with one property
+- Each booking is associated with one review
 - Each booking can have one payment
 
 ---
@@ -189,11 +200,15 @@ Represents payments made for bookings.
 - `id` - unique identifier for a payment
 - `booking_id` - references the associated booking
 - `amount` - total amount paid
-- `payment_status` - status (e.g, paid, pending)
+- `payment_method` - either credit_card, paypal, stripe
+- `transaction_id` - transaction identity
+- `payment_status` - status (e.g, paid, failed, pending)
 - `timestamp` - Time of transaction
+- `created_at` - date object was created
+- `updated_at` - date object was updated
 
 **Relationships:**
-- Each payment is linked to one booking
+- Each payment is linked to one booking (one to one)
 
 ---
 
@@ -203,13 +218,15 @@ Represents feedback left by users on properties.
 **Key Fields:**
 - `id` - unique identifier
 - `user_id` - references the user who wrote the review
-- `property_id` - references the review
+- `booking_id` - specific booking id
 - `rating` - numerical rating
 - `comment` - textual review
+- `created_at` - date object was created
+- `updated_at` - date object was updated
 
 **Relationships:**
 - Each review is written by one user
-- Each review is for one property
+- Each review is for one booking
 
 ---
 
@@ -221,6 +238,42 @@ Represents feedback left by users on properties.
 - **Property ↔ Reviews**: One-to-Many (one property can have many reviews)
 - **Booking ↔ Payment**: One-to-One (each booking has one payment)
 
+### Critical Optimizations
+**Databse Indexes**
+- **Users**: email(unique), role (for filtering hosts/guests).
+- **Properties**: host_id, location, price_per_night
+- **Bookings**: property_id, check_in, check_out
+- **Reviews**: property_id (to calculate average rating quickly)
+
+**Constraints**
+- Check constraint: ensure check_out > check_in in bookings
+- Unique constraint: Reviews.booking_id(one review per booking)
+
+---
+## Feature Breakdown
+
+### 👤 User Management  
+Securely handles user registration, authentication, and profile updates. Users can sign up as guests, hosts, or admins, with role-based access controls (e.g., only hosts can list properties). Built with JWT for stateless authentication and OAuth support for third-party logins.  
+
+### 🏠 Property Management  
+Allows hosts to create, update, and delete property listings with details like location, pricing, and amenities. Guests can search properties using filters (price, location, dates) and view availability calendars. Geospatial indexing enables "nearby properties" queries.  
+
+### 📅 Booking System  
+Guests can reserve properties by selecting check-in/check-out dates, with real-time availability validation. Hosts manage bookings (confirm, cancel) and track statuses (pending/confirmed/cancelled). Overlapping date conflicts are prevented using database constraints.  
+
+### 💳 Payment Processing  
+Integrated with Stripe/PayPal to securely handle transactions. Payments are linked to bookings, with idempotency to avoid duplicate charges. Webhooks update booking statuses asynchronously on payment success/failure.  
+
+### ⭐ Review System  
+Guests can leave ratings (1-5 stars) and comments for properties they’ve booked. Reviews are tied to specific bookings to prevent spam. Average ratings are dynamically calculated and cached for performance.  
+
+### 🚀 Database Optimizations  
+PostgreSQL with indexing (e.g., `property_id + dates` for bookings) and Redis caching for frequent queries like property searches. Partitioning and read replicas ensure scalability for high traffic.  
+
+### 📚 API Documentation  
+Comprehensive REST and GraphQL APIs documented via OpenAPI/Swagger. Supports CRUD operations for all entities and flexible queries (e.g., fetch a property’s details + reviews in one GraphQL request).  
+
+---
 
 ## 📚 Additional Resources
 
