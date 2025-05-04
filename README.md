@@ -121,8 +121,7 @@ DELETE /reviews/{id}/ - Delete review
 
 ## 📚 Additional Resources
 
-- 📘 [System design architecture for hotel booking apps](#)
-- 👨‍💻 [Software development team structure](#)
+- 📘 [System design architecture for hotel booking apps](https://medium.com/nerd-for-tech/system-design-architecture-for-hotel-booking-apps-like-airbnb-oyo-6efb4f4dddd7)
 
 ---
 
